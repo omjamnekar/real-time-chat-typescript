@@ -1,0 +1,114 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <title>Chat App</title>
+    <script src="https://cdn.socket.io/4.7.2/socket.io.min.js"></script>
+    <link rel="stylesheet" href="style.css" />
+  </head>
+  <body>
+    <div class="app-container">
+      <!-- Left Drawer: Members -->
+      <div class="drawer drawer-left">
+        <!-- <h3>Members</h3> -->
+        <ul id="membersList"></ul>
+      </div>
+
+      <!-- Main Chat Area -->
+      <div class="chat-container">
+        <h2 class="chat-title">💬 Chat Room</h2>
+
+        <div class="input-group">
+          <input type="text" id="groupName" placeholder="Enter room name" />
+          <input type="text" id="userName" placeholder="Your name" />
+          <button onclick="createGroup()">Create Group</button>
+          <button onclick="joinGroup()">Join Group</button>
+        </div>
+
+        <div class="input-group">
+          <input type="text" id="message" placeholder="Type a message" />
+          <button onclick="sendMessage()">Send</button>
+        </div>
+
+        <ul id="messages" class="message-list"></ul>
+      </div>
+
+      <!-- Right Drawer: Groups -->
+      <div class="drawer drawer-right">
+        <!-- <h3>Groups</h3> -->
+        <ul id="groupsList"></ul>
+      </div>
+    </div>
+
+    <script src="https://cdn.socket.io/4.7.2/socket.io.min.js"></script>
+    <script>
+      const socket = io("http://localhost:5000");
+      let room = "";
+      let sender = "";
+
+      function createGroup() {
+        room = document.getElementById("groupName").value;
+        sender = document.getElementById("userName").value;
+        if (room && sender) {
+          socket.emit("createGroup", { room, sender });
+        }
+      }
+
+      function joinGroup() {
+        room = document.getElementById("groupName").value;
+        sender = document.getElementById("userName").value;
+        if (room && sender) {
+          document.getElementById("messages").innerHTML = "";
+          socket.emit("joinRoom", { room, sender });
+        }
+      }
+
+      function sendMessage() {
+        const message = document.getElementById("message").value;
+        if (room && sender && message) {
+          socket.emit("sendMessage", { room, message, sender });
+          document.getElementById("message").value = "";
+        }
+      }
+
+      socket.on("receiveMessage", ({ message, sender }) => {
+        const item = document.createElement("li");
+        item.textContent = `${sender}: ${message}`;
+        item.className = "message-item";
+        document.getElementById("messages").appendChild(item);
+      });
+
+      socket.on("previousMessages", (messages) => {
+        const messageList = document.getElementById("messages");
+        messages.forEach(({ message, sender }) => {
+          const item = document.createElement("li");
+          item.textContent = `${sender}: ${message}`;
+          item.className = "message-item";
+          messageList.appendChild(item);
+        });
+      });
+
+      socket.on("roomUsers", (users) => {
+        const membersList = document.getElementById("membersList");
+        membersList.innerHTML = "";
+        users.forEach((user) => {
+          const li = document.createElement("li");
+          li.textContent = user;
+          membersList.appendChild(li);
+        });
+      });
+
+      socket.on("allGroups", (groups) => {
+        const groupsList = document.getElementById("groupsList");
+        groupsList.innerHTML = "";
+        groups.forEach((group) => {
+          const li = document.createElement("li");
+          li.textContent = group;
+          groupsList.appendChild(li);
+        });
+      });
+
+      socket.on("errorMsg", (msg) => alert(msg));
+    </script>
+  </body>
+</html>
