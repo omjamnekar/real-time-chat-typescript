@@ -1,6 +1,9 @@
 
 #  Group Chat Server (Express + MongoDB)
 
+### PAGE
+![index.html](./public/assets/image.png)
+
 A simple and scalable backend API for group-based messaging using **Node.js**, **Express**, and **MongoDB**. This server powers a real-time chat application that supports multiple groups, message history, and persistent data storage.
 
 ---
@@ -64,8 +67,7 @@ MONGODB_URI=mongodb://localhost:27017/chatapp
 
 ---
 
-### PAGE
-![index.html](./public/assets/image.png)
+
 
 ## ▶ Run the Server
 
