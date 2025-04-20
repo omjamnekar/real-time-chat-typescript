@@ -1,11 +1,11 @@
 
-# 📡 Group Chat Server (Express + MongoDB)
+#  Group Chat Server (Express + MongoDB)
 
 A simple and scalable backend API for group-based messaging using **Node.js**, **Express**, and **MongoDB**. This server powers a real-time chat application that supports multiple groups, message history, and persistent data storage.
 
 ---
 
-## 🚀 Features
+##  Features
 
 - 🔐 JWT-based authentication
 - 💬 Real-time group chat messaging (with `socket.io`)
@@ -16,7 +16,7 @@ A simple and scalable backend API for group-based messaging using **Node.js**, *
 
 ---
 
-## 🧱 Tech Stack
+##  Tech Stack
 
 | Layer         | Tech                    |
 | ------------- | ------------------------ |
@@ -29,7 +29,7 @@ A simple and scalable backend API for group-based messaging using **Node.js**, *
 
 ---
 
-## 📁 Folder Structure
+##  Folder Structure
 
 ```
 .
@@ -47,7 +47,7 @@ A simple and scalable backend API for group-based messaging using **Node.js**, *
 
 ---
 
-## 📦 Installation
+##  Installation
 
 ```bash
 git clone https://github.com/your-username/group-chat-server.git
@@ -55,7 +55,7 @@ cd group-chat-server
 npm install
 ```
 
-### 🧪 Environment Variables
+###  Environment Variables
 
 Create a `.env` file:
 
@@ -70,7 +70,7 @@ MONGODB_URI=mongodb://localhost:27017/chatapp
 ![index.html]
 (./public/assets/image.png)
 
-## ▶️ Run the Server
+## ▶ Run the Server
 
 ```bash
 npm start
@@ -80,9 +80,9 @@ By default, server runs on: `http://localhost:5000`
 
 ---
 
-## 📡 API Endpoints
+##  API Endpoints
 
-### ✅ Fetch Group Messages
+###  Fetch Group Messages
 
 ```
 GET /api/groups
@@ -108,7 +108,7 @@ GET /api/groups
 
 ---
 
-## 🧠 Socket.IO Events
+##  Socket.IO Events
 
 ### Connect to socket
 ```js
@@ -133,7 +133,7 @@ socket.on("receive_message", (data) => {
 
 ---
 
-## 💡 Notes
+##  Notes
 
 - The backend doesn't include user signup/login yet. Add JWT or session-based auth if needed.
 - Group metadata (`name`, `admin`, `members`) is optional in DB. You can keep it fully in memory too.
@@ -141,7 +141,7 @@ socket.on("receive_message", (data) => {
 
 ---
 
-## ✨ Future Improvements
+##  Future Improvements
 
 - 🔐 Add authentication (JWT)
 - 📌 Add pinned messages / mentions
@@ -151,7 +151,7 @@ socket.on("receive_message", (data) => {
 
 ---
 
-## 👨‍💻 Author
+##  Author
 
 Built with **Om Jamnekar**  
 [GitHub](https://github.com/your-username) | [Email](mailto:omjjamnekar@gmail.com)
