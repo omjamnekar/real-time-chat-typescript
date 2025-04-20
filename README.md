@@ -23,9 +23,7 @@ A simple and scalable backend API for group-based messaging using **Node.js**, *
 | Server        | Node.js, Express.js     |
 | Real-time     | Socket.IO               |
 | Database      | MongoDB + Mongoose      |
-| Authentication| JWT (optional)          |
 | Environment   | dotenv                  |
-| Date Handling | Day.js (optional)       |
 
 ---
 
@@ -67,8 +65,7 @@ MONGODB_URI=mongodb://localhost:27017/chatapp
 ---
 
 ### PAGE
-![index.html]
-(./public/assets/image.png)
+![index.html](./public/assets/image.png)
 
 ## ▶ Run the Server
 
